@@ -1,0 +1,27 @@
+collections:
+  c_field_types:
+    output: false
+name: Zellous Design
+url: "http://zellous.co"
+header_logo_path: /img/logo.png
+header_logo_alt: Zellous Design logo
+footer_text: ©2015 Zellous Design. <a href="/privacy-policy">Privacy policy</a>.
+split: "<!--split-->"
+defaults:
+  - scope:
+      path: ""
+      type: Text
+    values:
+      layout: default
+field_types:
+  - Text
+  - Email
+  - Number
+  - Dropdown
+  - Textarea
+field_widths:
+  - Half
+  - Full
+required_or_optionals:
+  - Optional
+  - Required
