@@ -1757,7 +1757,7 @@ body {
 
 @media (min-width: 480px) {
   .header__logo {
-    display: block;
+    display: inline-block;
     margin: 48px; } }
 h1, h2 {
   font-size: 32px;
@@ -1884,20 +1884,23 @@ section {
 .section-3__heading {
   text-align: center !important; }
 
-.section__contact, footer {
+.section__form, .section__contact, footer, footer a {
   background-color: #3A74FF;
   color: white; }
 
-.contact__heading {
+.form__heading, .contact__heading {
   text-align: center !important; }
 
-.contact__field {
+.form__heading {
+  margin-bottom: 40px; }
+
+.form__field, .contact__field {
   position: relative; }
 
-.contact__textarea {
+.form__textarea, .contact__textarea {
   height: 150px; }
 
-.contact__input, .contact__select, .contact__textarea {
+.form__input, .form__select, .form__textarea, .contact__input, .contact__select, .contact__textarea {
   background-color: #2C63D9;
   border: 1px solid #2C63D9;
   box-sizing: border-box;
@@ -1905,21 +1908,21 @@ section {
   padding: 12px;
   width: 100%; }
 
-.contact__label {
+.form__label, .contact__label {
   color: #C0D4FF; }
 
-.contact__select {
+.form__select, .contact__select {
   display: inline-block;
-  height: 35px;
-  line-height: 35px; }
+  height: 45px;
+  line-height: 45px; }
 
-.contact__label {
+.form__label, .contact__label {
   font-size: 14px;
   position: absolute;
   top: -10px;
   left: 34px; }
 
-.contact__submit {
+.form__submit, .contact__submit {
   text-align: center !important; }
 
 .contact__submit-btn {
@@ -1927,7 +1930,49 @@ section {
   background-position: 40% 20%;
   background-repeat: no-repeat;
   border: 0;
+  color: #C0D4FF;
   padding-top: 50px; }
+
+.contact__submit-btn:hover {
+  color: white;
+  font-weight: bold; }
+
+.contact__submit-btn:focus {
+  outline-width: 0; }
+
+.form__submit-btn {
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 40px;
+  color: white;
+  padding: 14px 26px;
+  margin: 1px;
+  margin-top: 31px; }
+
+.form__submit-btn:focus {
+  border: 1px solid #2C61E1;
+  outline-width: 0; }
+
+.form__submit-btn:hover {
+  border: 2px solid white;
+  margin: 0;
+  margin-top: 30px; }
+
+.form__result {
+  font-size: 14px !important;
+  margin-top: -25px; }
+
+.form--error {
+  color: #E23F3F; }
+
+.form--message {
+  color: #30497D; }
+
+.form--already-subscribed {
+  color: #93EC53; }
+
+.form--success {
+  color: #93EC53; }
 
 .parsley-error {
   border: 1px solid #30497D; }
@@ -1939,17 +1984,61 @@ section {
 .parsley-errors-list + .contact__label {
   color: white; }
 
-.parsley-required {
+.parsley-required, .parsley-type {
   color: #30497D;
   font-size: 14px;
   margin-top: -40px;
   margin-bottom: 30px; }
 
+.contact-form__messages {
+  color: #93EC53;
+  font-size: 14px !important;
+  margin-top: -25px; }
+
 .contact__input:focus, .contact__select:focus, .contact__textarea:focus {
   outline-width: 0;
   border-color: #30497D; }
 
+.contact__input:focus + label, .contact__select:focus + label, .contact__textarea:focus + label {
+  color: white; }
+
+.form__input:focus, .form__select:focus, .form__textarea:focus {
+  outline-width: 0;
+  border-color: #30497D; }
+
+.form__input:focus + label, .form__select:focus + label, .form__textarea:focus + label {
+  color: white; }
+
+/* --------------------------------------------------
+Sticky footer */
+html,
+body {
+  height: 100%; }
+
+body {
+  /* only to force vertical scroll on browsers */
+  overflow-y: scroll;
+  /* remove default paddings and margins on browsers */
+  padding: 0;
+  margin: 0; }
+
+.sticky-footer-wrap {
+  box-sizing: border-box;
+  display: table;
+  width: 100%;
+  height: 100%; }
+
+.sticky-footer-wrap-inner {
+  display: table-row;
+  height: 100%; }
+
 footer {
+  display: table-row;
+  height: 1px; }
+
+/* Sticky footer ends here
+-------------------------------------------------- */
+.footer__copyright {
   padding: 24px; }
 
 /*------------------------------------*\
