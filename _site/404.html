@@ -10,11 +10,9 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <title>
-        {% if page.title %}
-            {{ page.title }}
-        {% else %}
+        
             Default Page Title
-        {% endif %}
+        
         </title>
         
         <link rel="shortcut icon" href="/img/favicon.png">
@@ -41,15 +39,36 @@
         <div class="sticky-footer-wrap">
             <div class="sticky-footer-wrap-inner">
                 <div class="mobile-menu__overlay"></div>
-                {% include header.html %}
+                <header class="grid grid--center">
+    <div class="grid__item one-half palm--two-thirds">
+        <a href="/"><img class="header__logo editable" src="" alt=""></a>
+    </div>
+    <div class="grid__item one-half palm--two-thirds" style="text-align:right;">
+        <div class="mobile-menu__btn">MENU <i class="fa fa-navicon"></i></div>
+    </div>
+</header>
 
 
-                {% assign contentArray = content | split: site.split %}
-                {{ contentArray.first }}
+                
+                <div class="grid">
+    <div class="grid__item push--one-sixth two-thirds">
+        <h1>404</h1>
+        <p>Page not found</p>
+    </div>
+</div>
 
 
             </div>
-            {% include footer.html %}
+            <footer>
+    <section class="grid">
+        <div class="grid__item one-half">
+            <div class="footer__copyright editable">&copy;2015 Freestate Gymnastics</div>
+        </div>
+        <div class="grid__item one-half">
+            <div class="footer__nav editable"><p><a class="cc-active" href="/">Home</a>&nbsp;<a href="/classes/">Classes</a></p></div>
+        </div>
+    </section>
+</footer>
         </div>
         
         <!--Mobile menu-->
@@ -279,9 +298,7 @@
             
         </script>
         
-        {% assign contentArrayLength = contentArray | size %}
-        {% if contentArrayLength > 1  %}
-            {{ contentArray.last }}
-        {% endif %}
+        
+        
     </body>
 </html>
