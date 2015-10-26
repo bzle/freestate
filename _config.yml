@@ -1,6 +1,4 @@
 collections:
-  about_pages:
-    output: true
 name: Freestate Gymnastics
 url: "http://www.freestategymnastics.com"
 split: "<!--split-->"

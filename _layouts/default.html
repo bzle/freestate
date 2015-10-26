@@ -43,66 +43,13 @@
                 <div class="mobile-menu__overlay"></div>
                 {% include header.html %}
 
-
                 {% assign contentArray = content | split: site.split %}
                 {{ contentArray.first }}
-
 
             </div>
             {% include footer.html %}
         </div>
-        
-        <!--Mobile menu-->
-        <style>
-            .mobile-menu--open {
-                overflow: hidden;
-            }
-            .sticky-footer-wrap {
-                background-color: white;
-                position: relative;
-                z-index: 10;
-            }
-            header {
-/*                position: fixed;*/
-            }
-            .mobile-menu__btn {
-                padding: 8px;
-                background-color: darkorchid;
-                cursor: pointer;
-            }
-            .mobile-menu__close-btn {
-                padding: 8px;
-            }
-            .mobile-menu__holder {
-                background-color: aquamarine;
-                position: fixed;
-                top: 0;
-                right: 0;
-                height: 100vh;
-                width: 260px;
-                overflow: scroll;
-                z-index: 0;
-            }
-            .mobile-menu {
-            }
-            .mobile-menu a {
-                display: block;
-            }
-            .mobile-menu__overlay {
-                display: none;
-                opacity: 0;
-                width: 100%;
-                height: 100%;
-                position: absolute;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0;
-                background-color: white;
-                z-index: 20;
-            }
-        </style>
-        
+
         <div class="mobile-menu__holder grid">
             <div class="grid__item one-whole" style="text-align:right;">
                 <div class="mobile-menu__close-btn">MENU <i class="fa fa-close"></i></div>
@@ -116,72 +63,11 @@
                     <a href="#5">Link Five</a>
                     <a href="#1">Link One</a>
                     <a href="#2">Link Two</a>
-                    <a href="#3">Link Three</a>
-                    <a href="#4">Link Four</a>
-                    <a href="#5">Link Five</a>
-                    <a href="#1">Link One</a>
-                    <a href="#2">Link Two</a>
-                    <a href="#3">Link Three</a>
-                    <a href="#4">Link Four</a>
-                    <a href="#5">Link Five</a>
-                    <a href="#1">Link One</a>
-                    <a href="#2">Link Two</a>
-                    <a href="#3">Link Three</a>
-                    <a href="#4">Link Four</a>
-                    <a href="#5">Link Five</a>
-                    <a href="#1">Link One</a>
-                    <a href="#2">Link Two</a>
-                    <a href="#3">Link Three</a>
-                    <a href="#4">Link Four</a>
-                    <a href="#5">Link Five</a>
-                    <a href="#1">Link One</a>
-                    <a href="#2">Link Two</a>
-                    <a href="#3">Link Three</a>
-                    <a href="#4">Link Four</a>
-                    <a href="#5">Link Five</a>
-                    <a href="#1">Link One</a>
-                    <a href="#2">Link Two</a>
-                    <a href="#3">Link Three</a>
-                    <a href="#4">Link Four</a>
-                    <a href="#5">Link Five</a>
-                    <a href="#1">Link One</a>
-                    <a href="#2">Link Two</a>
-                    <a href="#3">Link Three</a>
-                    <a href="#4">Link Four</a>
-                    <a href="#5">Link Five</a>
-                    <a href="#1">Link One</a>
-                    <a href="#2">Link Two</a>
-                    <a href="#3">Link Three</a>
-                    <a href="#4">Link Four</a>
-                    <a href="#5">Link Five</a>
-                    <a href="#1">Link One</a>
-                    <a href="#2">Link Two</a>
-                    <a href="#3">Link Three</a>
-                    <a href="#4">Link Four</a>
-                    <a href="#5">Link Five</a>
-                    <a href="#3">Link Three</a>
-                    <a href="#4">Link Four</a>
-                    <a href="#5">Link Five</a>
-                    <a href="#1">Link One</a>
-                    <a href="#2">Link Two</a>
-                    <a href="#3">Link Three</a>
-                    <a href="#4">Link Four</a>
-                    <a href="#5">Link Five</a>
-                    <a href="#1">Link One</a>
-                    <a href="#2">Link Two</a>
-                    <a href="#3">Link Three</a>
-                    <a href="#4">Link Four</a>
-                    <a href="#5">Link Five</a>
-                    <a href="#1">Link One</a>
-                    <a href="#2">Link Two</a>
-                    <a href="#3">Link Three</a>
-                    <a href="#4">Link Four</a>
-                    <a href="#5">Link Five</a>
-                    <a href="#1">Link One</a>
-                    <a href="#2">Link Two</a>
-                    <a href="#3">Link Three</a>
-                    <a href="#4">Link Four</a>
-                    <a href="#5">Link Five</a>
+                    <p>------------</p>
+                    {% for page in site.pages %}
+                    <a href="#">{{ page.url }}</a>
+                    <p>------------</p>
+                    {% endfor %}
                 </nav>
             </div>
         </div>
@@ -190,16 +76,16 @@
         <script src="/js/jquery-2.1.4.min.js"></script>
         <script type='application/javascript' src='/js/ext__easing/jquery-ui.min.js'></script>
         
-        
+        <!-- Zellous' Mobile Menu -->
         <script>
             $( document ).ready(function() {
-                $.fn.toggleClick=function(){
-                    var functions=arguments, iteration=0
-                    return this.click(function(){
-                        functions[iteration].call()
-                        iteration= (iteration+1) %functions.length
-                    })
-                }
+                var delay = (function(){
+                  var timer = 0;
+                  return function(callback, ms){
+                    clearTimeout (timer);
+                    timer = setTimeout(callback, ms);
+                  };
+                })();
                 function openMenu() {
                     $(".sticky-footer-wrap").stop().animate({
                         left: "-260px"
@@ -211,7 +97,7 @@
                     $(".mobile-menu__overlay").show().stop().animate({
                         opacity: .3
                     }, 100);
-                    removeMobileMenuOpenClass()
+                    resetMenuClass();
                 }
                 function closeMenu() {
                     $(".sticky-footer-wrap").stop().animate({
@@ -227,42 +113,21 @@
                     }, 100, function(){
                         $(".mobile-menu__overlay").hide();
                     });
-                    removeMobileMenuOpenClass();
+                    resetMenuClass();
                 }
-                function removeMobileMenuOpenClass(){
-                    setTimeout(function(){
+                function resetMenuClass(){
+                    delay(function(){
                         pageOffset = $(".sticky-footer-wrap").css("left");
                         if(pageOffset == "0px"){
                             $("body").removeClass("mobile-menu--open")
-                            console.log("removed class: "+pageOffset);
                         } else {
                             $("body").addClass("mobile-menu--open")
-                            console.log("added class: "+pageOffset);
                         }
-                    }, 3000);
-                    
-                    
+                    }, 2000 );
                 }
                 $(".mobile-menu__btn").click(function() {  
                     openMenu();
                 });
-//                $(".mobile-menu__btn").toggleClick(function() {
-//                    $("body").toggleClass("mobile-menu--open");
-//                    $(".sticky-footer-wrap").stop().animate({
-//                        left: "-260px"
-//                    }, 400, "easeOutExpo");
-//                    $(".mobile-menu__overlay").show().stop().animate({
-//                        opacity: .9
-//                    }, 400, "easeOutExpo");
-//                }, function(){
-//                    $("body").toggleClass("mobile-menu--open");
-//                    $(".sticky-footer-wrap").stop().animate({
-//                        left: "0"
-//                    }, 400, "easeOutExpo");
-//                    $(".mobile-menu__overlay").stop().animate({
-//                        opacity: 0
-//                    }, 400, "easeOutExpo", function(){$(".mobile-menu__overlay").hide()});
-//                });
                 $(".mobile-menu__close-btn").click(function() {
                     closeMenu();
                 });
@@ -270,13 +135,6 @@
                     closeMenu();
                 });
             });
-            
-            // Toggle class
-            // ------------
-            // $('button').on('click', function() {
-            //   $('div').toggleClass("A B");
-            // });
-            
         </script>
         
         {% assign contentArrayLength = contentArray | size %}
